@@ -31,7 +31,6 @@ exports.LogoutPage = class LogoutPage{
         await expect(this.logoutConfirmBtn).toBeVisible()
         await expect(this.logoutCancleBtn).toBeVisible()
         await this.logoutCancleBtn.click()
-        // await expect(this.validateCancle).toBeVisible()
         await this.logoutNameBtn.click();
         await this.logoutBtn.click()
         await this.logoutConfirmBtn.click()
@@ -51,7 +50,6 @@ exports.LogoutPage = class LogoutPage{
         await expect(this.logoutConfirmBtn).toBeVisible()
         await expect(this.logoutCancleBtn).toBeVisible()
         await this.logoutCancleBtn.click()
-        // await expect(this.validateCancle).toBeVisible()
         await this.logoutNameBtn.click();
         await this.logoutBtn.click()
         await this.logoutConfirmBtn.click()
