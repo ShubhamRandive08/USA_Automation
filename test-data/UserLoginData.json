@@ -1,0 +1,24 @@
+
+{
+    "perfect_user" : {
+        "username" : "srandive245@gmail.com",
+        "password" : "Kingsr@08"
+    },
+
+    "worng_with_username" : {
+        "username" : "randive245@gmail.com",
+        "password" : "Kingsr@08"
+    },
+
+    "wrong_with_pass" : {
+        "username" : "randive245@gmail.com",
+        "password" : "Kingsr@0"
+    },
+
+    "assert_with_empty_field" : {
+        "username" : "",
+        "password" : ""
+    }
+
+    
+}
