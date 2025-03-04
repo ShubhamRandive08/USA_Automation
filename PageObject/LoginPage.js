@@ -55,5 +55,4 @@ exports.LoginPage = class LoginPage{
         await this.page.locator(`${validateComponents}`).waitFor();
         await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
     }
-
 }
