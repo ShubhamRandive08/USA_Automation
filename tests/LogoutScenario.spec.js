@@ -7,45 +7,62 @@ let loginpage;
 let logoutpage;
 
 test.describe('Validate Logout Function', async () => {
-
-    test.afterAll(async ({page}) => {
-        await page.close()
-    })
-
     test.beforeEach(async ({ page }) => {
         loginpage = new LoginPage(page)
         logoutpage = new LogoutPage(page)
         await loginpage.goTo()
         await helper.validate(page)
     })
-    test('Validate Dashboard Logout Function', async ({ page }) => {
+
+// Test cases for teacher logout process
+    test('Validate Teacher Dashboard Logout Function', async ({ page }) => {
         await helper.loginValidTeacher(page, "//span[@class = 'nav-profile-name']")
         await logoutpage.logout("󰋜 Dashboard")
     })
 
-    // 1) <span class="menu-title">Dashboard</span> aka getByRole('link', { name: '󰋜 Dashboard' })
-    // 2) <span class="menu-title">NEW ADDMISSION</span> aka getByRole('link', { name: '󰝦 NEW ADDMISSION 󰅀' })
-    // 3) <span class="menu-title">STAFF</span> aka getByRole('link', { name: '󰕱 STAFF 󰅀' })
-    // 4) <span class="menu-title">STUDENT LIST</span> aka getByRole('link', { name: '󰄫 STUDENT LIST 󰅀' })
-    // 5) <span class="menu-title">Events</span> aka getByRole('link', { name: '󰃳 Events' })
-
-    test('Validate New Admission Logout Function', async ({ page }) => {
+    test('Validate Teacher New Admission Logout Function', async ({ page }) => {
         await helper.loginValidTeacher(page, "//span[@class = 'nav-profile-name']")
         await logoutpage.logoutToggle("󰝦 NEW ADDMISSION 󰅀", "New Student")
     })
     
-    test('Validate STAFF Logout Function', async ({ page }) => {
+    test('Validate Teacher STAFF Logout Function', async ({ page }) => {
         await helper.loginValidTeacher(page, "//span[@class = 'nav-profile-name']")
         await logoutpage.logoutToggle("󰕱 STAFF 󰅀", "Staff Member")
     })
-    test('Validate STUDENT LIST Logout Function', async ({ page }) => {
+    test('Validate Teacher STUDENT LIST Logout Function', async ({ page }) => {
         await helper.loginValidTeacher(page, "//span[@class = 'nav-profile-name']")
         await logoutpage.logoutToggle("󰄫 STUDENT LIST 󰅀", "󰄫 STUDENT LIST 󰅀")
     })
 
-    test('Validate Events Logout Function', async ({ page }) => {
+    test('Validate Teacher Events Logout Function', async ({ page }) => {
         await helper.loginValidTeacher(page, "//span[@class = 'nav-profile-name']")
         await logoutpage.logout("󰃳 Events")
+    })
+
+// Test cases for the admin logout process
+    test('Validate Admin Dashboard Logout Function', async ({page}) => {
+        await helper.loginValidAdmin(page,"//div[@class = 'swal2-success-ring']")
+        await logoutpage.logout("󰋜 Dashboard")
+    })
+
+    test('Validate Admin Saff Logout Function', async ({page}) => {
+        await helper.loginValidAdmin(page,"//div[@class = 'swal2-success-ring']")
+        await logoutpage.logoutToggle("󰕱 STAFF 󰅀", "Staff Member")
+    })
+
+    test('Validate Admin Add Events Logout Function', async ({page}) => {
+        await helper.loginValidAdmin(page,"//div[@class = 'swal2-success-ring']")
+        await logoutpage.logout("Add Events")
+    })
+
+    test('Validate Admin Added Events Logout Function', async ({page}) => {
+        await helper.loginValidAdmin(page,"//div[@class = 'swal2-success-ring']")
+        await logoutpage.logout("Added Events")
+    })
+
+    test('Validate Admin Publish Reports Logout Function', async ({page}) => {
+        await helper.loginValidAdmin(page,"//div[@class = 'swal2-success-ring']")
+        await logoutpage.logout("Publish Reports")
     })
 
 })
