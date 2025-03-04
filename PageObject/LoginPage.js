@@ -17,8 +17,7 @@ exports.LoginPage = class LoginPage{
         this.createBtn = page.locator("//a[@id = 'create-user']")
         this.loginBtn = page.locator("//a[@id = 'ad-login']")
         this.adminUsername = page.locator("//input[@type = 'text']")
-        // this.validComponent = page.locator("//span[@class = 'nav-profile-name']")
-
+        this.adminLoginBtn = page.locator("//button[@class='swal2-confirm swal2-styled']")
     }
 
     async goTo(){
@@ -54,5 +53,8 @@ exports.LoginPage = class LoginPage{
         await this.button.click();
         await this.page.locator(`${validateComponents}`).waitFor();
         await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
+        await expect(this.page.locator("//button[@class='swal2-confirm swal2-styled']")).toBeVisible();
+        await this.adminLoginBtn.click()
+        // await this.page.waitForTimeout(5000)
     }
 }
