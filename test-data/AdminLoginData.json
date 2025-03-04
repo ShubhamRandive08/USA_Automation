@@ -1,0 +1,28 @@
+{
+    "perfect_admin" : {
+        "username" : "admin",
+        "password" : "admin"
+    },
+
+    "worng_with_username" : {
+        "username" : "admi",
+        "password" : "admin"
+    },
+
+    "wrong_with_pass" : {
+        "username" : "admin",
+        "password" : "admi"
+    },
+
+    "assert_with_empty_field" : {
+        "username" : "",
+        "password" : ""
+    },
+
+    "locked_user" : {
+        "username" : "rohan8530@gmail.com",
+        "password" : "Rohan@08"
+    }
+
+    
+}
