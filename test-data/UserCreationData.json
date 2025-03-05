@@ -1,0 +1,22 @@
+{
+    "valid_data" : {
+        "name" : "testuser",
+        "email" : "testuser@gmail.com",
+        "username" : "testuser@123",
+        "password" : "testuser@123"
+    },
+
+    "wrong_email" : {
+        "name" : "testuser",
+        "email" : "testusergmail.com",
+        "username" : "testuser@123",
+        "password" : "testuser@123"
+    },
+
+    "emply_field" : {
+        "name" : "testuser",
+        "email" : "",
+        "username" : "testuser@123",
+        "password" : "testuser@123"
+    }
+}
