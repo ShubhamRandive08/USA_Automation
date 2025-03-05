@@ -13,9 +13,9 @@ test.describe('Register New Teacher', async () => {
         await loginpage.goTo()
     })
 
-    test.afterAll(async ({page})=>{
-        await page.close()
-    })
+    // test.afterAll(async ({page})=>{
+    //     await page.close()
+    // })
 
     test("Login With Wrong Email", async ({page}) => {
         await loginpage.registerTeacher(UserCreationData.wrong_email.name, UserCreationData.wrong_email.email, UserCreationData.wrong_email.username, UserCreationData.wrong_email.password, "//div[@class='swal2-icon swal2-error swal2-icon-show']", "//button[@class='swal2-confirm swal2-styled']")
