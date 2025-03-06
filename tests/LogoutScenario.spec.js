@@ -20,7 +20,7 @@ test.describe('Validate Logout Function', async () => {
             ["󰋜 Dashboard"],
             ["󰝦 NEW ADDMISSION 󰅀", "New Student"],
             ["󰕱 STAFF 󰅀", "Staff Member"],
-            ["󰄫 STUDENT LIST 󰅀", "󰄫 STUDENT LIST 󰅀"],
+            ["󰄫 STUDENT LIST 󰅀", "Student List"],
             ["󰃳 Events"]
         ];
 

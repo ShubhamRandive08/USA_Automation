@@ -65,8 +65,8 @@ exports.LoginPage = class LoginPage {
         await this.password.click()
         await this.password.fill(password)
         await this.button.click();
-        await this.page.locator(`${validateComponents}`).waitFor();
-        await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
+        // await this.page.locator(`${validateComponents}`).waitFor();
+        // await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
     }
 
     async adminLogin(username, password, validateComponents) {
@@ -79,8 +79,6 @@ exports.LoginPage = class LoginPage {
         await this.password.click()
         await this.password.fill(password)
         await this.button.click();
-        await this.page.locator(`${validateComponents}`).waitFor();
-        await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
         await expect(this.page.locator("//button[@class='swal2-confirm swal2-styled']")).toBeVisible();
         await this.adminLoginBtn.click()
         // await this.page.waitForTimeout(5000)

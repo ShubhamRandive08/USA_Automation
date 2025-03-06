@@ -40,8 +40,8 @@ exports.LogoutPage = class LogoutPage{
     async logoutToggle(logoutPage, toggleLocator){
         await this.page.getByRole('link', { name: `${logoutPage}` }).click();
         await expect(this.page.getByRole('link', { name: `${logoutPage}` })).toBeVisible()
-        await expect(this.page.getByRole('link', { name: `${toggleLocator}` })).toBeVisible()
-        await this.page.getByRole('link', { name: `${toggleLocator}` }).click()
+        await expect(this.page.getByRole('link', { name: `${toggleLocator}`, exact : true })).toBeVisible()
+        await this.page.getByRole('link', { name: `${toggleLocator}`, exact : true }).click()
         await expect(this.logoutNameBtn).toBeVisible();
         await this.logoutNameBtn.click();
         await expect(this.logoutBtn).toBeVisible()
