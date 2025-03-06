@@ -26,6 +26,11 @@ test.describe('Teacher Page E2E', () => {
         // methods for new admission page 
         await teacharpage.validateNewAdmissionPage(UserLoginData.USER_1.perfect_user.username.split('@')[0],'//div[@class="swal2-container swal2-top swal2-backdrop-show"]')
         await teacharpage.validateNewAdmissionPage(UserLoginData.USER_1.perfect_user.username.split('@')[0],'')
+
+        // Methods for staff page
+        await teacharpage.validatStaffPage() 
+
+
     })
 
     test('E2E test case of teacher page USER_2',{
