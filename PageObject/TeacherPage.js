@@ -25,7 +25,10 @@ exports.TeacherPage = class TeacherPage {
         this.newAddBtn = page.locator('//button[@class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0"]')
         this.downloadBtn = page.locator('//button[@class="btn btn-primary mt-2 mt-xl-0"]')
 
-        // Elements for new addmistion page
+        // Elements for staff page
+        this.mainContent = page.locator('//div[@id="admin-staff"]')
+        this.adminText = page.locator('//h1[@class="card-title"]')
+
 
     }
 
@@ -59,7 +62,6 @@ exports.TeacherPage = class TeacherPage {
         await expect(this.page.locator('//button[@class="swal2-confirm swal2-styled swal2-default-outline"]')).toBeVisible()
         await this.page.locator('//button[@class="swal2-confirm swal2-styled swal2-default-outline"]').click()
         await this.newAddBtn.click()
-        await this.page.waitForTimeout(2000)
     }
 
     async validateNewAddForDashboard() {
@@ -108,7 +110,7 @@ exports.TeacherPage = class TeacherPage {
             await expect(this.page.locator('//input[@value="SUBMIT"]')).toBeVisible()
             await this.page.locator('//input[@value="SUBMIT"]').click()
             await expect(this.page.locator('//input[@value="SUBMIT"]')).toBeVisible()
-        }else{
+        } else {
             await expect(this.tname).toHaveText(tname)
             await this.sideBarNewAdmission.click();
             await expect(this.page.getByRole('link', { name: `New Student` })).toBeVisible()
@@ -116,11 +118,20 @@ exports.TeacherPage = class TeacherPage {
             await expect(this.page.locator('//input[@value="SUBMIT"]')).toBeVisible()
             await this.page.locator('//input[@value="SUBMIT"]').click()
             // await expect(this.page.locator(`${validComponent}`)).toBeVisible()
-            await this.page.waitForTimeout(2000)
+
         }
     }
 
-    // Validate Staff
+    // Validate Staff Page
+    async validatStaffPage() {
+        await this.sideBarStaff.click();
+        await expect(this.page.getByRole('link', { name: `Staff Member` })).toBeVisible()
+        await this.page.getByRole('link', { name: 'Staff Member' }).click() 
+        await expect(this.mainContent).toBeVisible()
+        await expect(this.adminText).toHaveText('ADMIN STAFF')
+    }
+
+    // Validate Student list page
 
 
 }
