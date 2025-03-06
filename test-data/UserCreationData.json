@@ -1,22 +1,22 @@
 {
     "valid_data" : {
-        "name" : "testuser",
-        "email" : "testuser@gmail.com",
-        "username" : "testuser@123",
-        "password" : "testuser@123"
+        "name" : "testreviewer",
+        "email" : "testreviewer@gmail.com",
+        "username" : "testreviewer@123",
+        "password" : "testreviewer@123"
     },
 
     "wrong_email" : {
-        "name" : "testuser",
-        "email" : "testusergmail.com",
-        "username" : "testuser@123",
-        "password" : "testuser@123"
+        "name" : "testreviewer",
+        "email" : "testreviewer.com",
+        "username" : "testreviewer@123",
+        "password" : "testreviewer@123"
     },
 
     "emply_field" : {
-        "name" : "testuser",
+        "name" : "testreviewer",
         "email" : "",
-        "username" : "testuser@123",
-        "password" : "testuser@123"
+        "username" : "testreviewer@123",
+        "password" : "testreviewer@123"
     }
 }

@@ -11,24 +11,24 @@ export async function validate(page) {
 }
 
 // Methods for teacher login senario
-export async function  loginValidTeacher(page,validComponent) {
+export async function  loginValidTeacher(page,user,validComponent) {
     loginpage = new LoginPage(page)
-    await loginpage.teacherLogin(UserLoginData.perfect_user.username,UserLoginData.perfect_user.password,validComponent)
+    await loginpage.teacherValidLogin(UserLoginData[user].perfect_user.username,UserLoginData[user].perfect_user.password,validComponent)
 }
 
-export async function loginWithWrongUsername(page,validateComponent) {
+export async function loginWithWrongUsername(page,user,validateComponent) {
     loginpage = new LoginPage(page)
-    await loginpage.teacherLogin(UserLoginData.worng_with_username.username,UserLoginData.worng_with_username.password,validateComponent)
+    await loginpage.teacherLogin(UserLoginData[user].worng_with_username.username,UserLoginData[user].worng_with_username.password,validateComponent)
 }
 
-export async function loginWithWrongPassword(page,validateComponent) {
+export async function loginWithWrongPassword(page,user,validateComponent) {
     loginpage = new LoginPage(page)
-    await loginpage.teacherLogin(UserLoginData.wrong_with_pass.username,UserLoginData.wrong_with_pass.password,validateComponent)
+    await loginpage.teacherLogin(UserLoginData[user].wrong_with_pass.username,UserLoginData[user].wrong_with_pass.password,validateComponent)
 }
 
-export async function noUsernamePassword(page,validateComponent) {
+export async function noUsernamePassword(page,user,validateComponent) {
     loginpage = new LoginPage(page)
-    await loginpage.teacherLogin(UserLoginData.assert_with_empty_field.username,UserLoginData.assert_with_empty_field.password,validateComponent)
+    await loginpage.teacherLogin(UserLoginData[user].assert_with_empty_field.username,UserLoginData[user].assert_with_empty_field.password,validateComponent)
 }
 
 export async function lockedUser(page,validateComponent) {
