@@ -77,10 +77,6 @@ exports.TeacherPage = class TeacherPage {
     // Methods for the new admission page
     async validateNewAdmissionPage(tname, validComponent) {
         if (validComponent == '') {
-            await expect(this.tname).toHaveText(tname)
-            await this.sideBarNewAdmission.click();
-            await expect(this.page.getByRole('link', { name: `New Student` })).toBeVisible()
-            await this.page.getByRole('link', { name: 'New Student' }).click()
             await this.page.locator('//input[@id="fname"]').click();
             await this.page.locator('//input[@id="fname"]').type('teststudent');
             await this.page.locator('//input[@id="mname"]').click();
@@ -113,12 +109,18 @@ exports.TeacherPage = class TeacherPage {
             await this.page.locator('//input[@value="SUBMIT"]').click()
             await expect(this.page.locator('//input[@value="SUBMIT"]')).toBeVisible()
         }else{
+            await expect(this.tname).toHaveText(tname)
+            await this.sideBarNewAdmission.click();
+            await expect(this.page.getByRole('link', { name: `New Student` })).toBeVisible()
+            await this.page.getByRole('link', { name: 'New Student' }).click()
             await expect(this.page.locator('//input[@value="SUBMIT"]')).toBeVisible()
             await this.page.locator('//input[@value="SUBMIT"]').click()
             // await expect(this.page.locator(`${validComponent}`)).toBeVisible()
             await this.page.waitForTimeout(2000)
         }
     }
+
+    // Validate Staff
 
 
 }

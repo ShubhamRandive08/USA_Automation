@@ -24,8 +24,8 @@ test.describe('Teacher Page E2E', () => {
         await teacharpage.validateNewAddForDashboard()
 
         // methods for new admission page 
-        await teacharpage.validateNewAdmissionPage(UserLoginData.USER_1.perfect_user.username.split('@')[0],'')
         await teacharpage.validateNewAdmissionPage(UserLoginData.USER_1.perfect_user.username.split('@')[0],'//div[@class="swal2-container swal2-top swal2-backdrop-show"]')
+        await teacharpage.validateNewAdmissionPage(UserLoginData.USER_1.perfect_user.username.split('@')[0],'')
     })
 
     test('E2E test case of teacher page USER_2',{
@@ -41,7 +41,8 @@ test.describe('Teacher Page E2E', () => {
         await teacharpage.validateNewAddForDashboard()
 
         // methods for new admission page 
-        await teacharpage.validateNewAdmissionPage()
+        await teacharpage.validateNewAdmissionPage(UserLoginData.USER_2.perfect_user.username.split('@')[0],'//div[@class="swal2-container swal2-top swal2-backdrop-show"]')
+        await teacharpage.validateNewAdmissionPage(UserLoginData.USER_2.perfect_user.username.split('@')[0],'')
         
     })
 })
