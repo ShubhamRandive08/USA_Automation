@@ -30,6 +30,9 @@ test.describe('Teacher Page E2E', () => {
         // Methods for staff page
         await teacharpage.validatStaffPage() 
 
+        // Methods for student list page
+        await teacharpage.validateStudentList()
+
 
     })
 
