@@ -1,11 +1,10 @@
-const {test, expect} = require('@playwright/test')
-
-exports.LoginPage = class LoginPage{
+const { test, expect } = require('@playwright/test')
+exports.LoginPage = class LoginPage {
     /**
      * @param {import ('@playwright/test').Page} page
      */
 
-    constructor(page){
+    constructor(page) {
         this.page = page
 
         // Element 
@@ -21,6 +20,7 @@ exports.LoginPage = class LoginPage{
         this.adminLoginBtn = page.locator("//button[@class='swal2-confirm swal2-styled']")
 
         //Register
+        this.isFirstCall = true;
         this.createBtnRagister = page.locator("//a[@id='create-user']")
         this.headingRegister = page.locator("//h3[@id='welcome']")
         this.nameRagister = page.locator("//input[@id='name']")
@@ -30,11 +30,11 @@ exports.LoginPage = class LoginPage{
         this.signUpBtnRagister = page.locator("//input[@class='btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn']")
     }
 
-    async goTo(){
+    async goTo() {
         await this.page.goto(process.env.BASE_URL)
     }
 
-    async validateComponents(){
+    async validateComponents() {
         await expect(this.popUp).toBeVisible()
         await expect(this.heading).toBeVisible()
         await expect(this.username).toBeVisible()
@@ -46,7 +46,20 @@ exports.LoginPage = class LoginPage{
 
     // Login
 
-    async teacherLogin(username,password,validateComponents){
+    async teacherLogin(username, password, validateComponents) {
+        await this.username.click()
+        await this.username.fill(username)
+        await this.password.click()
+        await this.password.fill(password)
+        await this.button.click();
+        await this.page.locator(`${validateComponents}`).waitFor();
+        await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
+        await this.page.locator(`//button[@class="swal2-confirm swal2-styled"]`).waitFor();
+        await expect(this.page.locator('//button[@class="swal2-confirm swal2-styled"]')).toBeVisible()
+        await this.page.locator('//button[@class="swal2-confirm swal2-styled"]').click()
+    }
+
+    async teacherValidLogin(username, password, validateComponents) {
         await this.username.click()
         await this.username.fill(username)
         await this.password.click()
@@ -56,8 +69,11 @@ exports.LoginPage = class LoginPage{
         await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
     }
 
-    async adminLogin(username,password,validateComponents){
-        await this.loginBtn.click()
+    async adminLogin(username, password, validateComponents) {
+        if(this.isFirstCall){
+            await this.loginBtn.click()
+            this.isFirstCall = false
+        }
         await this.adminUsername.click()
         await this.adminUsername.fill(username)
         await this.password.click()
@@ -70,28 +86,55 @@ exports.LoginPage = class LoginPage{
         // await this.page.waitForTimeout(5000)
     }
 
-    // Register
-    async  registerTeacher(name,email,username,password,validateComponent,clickBtn) {
-        await expect(this.createBtnRagister).toBeVisible()
-        await this.createBtnRagister.click()
-        await expect(this.headingRegister).toBeVisible()
-        await expect(this.nameRagister).toBeVisible()
-        await this.nameRagister.click()
-        await this.nameRagister.fill(name)
-        await expect(this.emailRagister).toBeVisible()
-        await this.emailRagister.click()
-        await this.emailRagister.fill(email)
-        await expect(this.usernameRagister).toBeVisible()
-        await this.usernameRagister.click()
-        await this.usernameRagister.fill(username)
-        await expect(this.passwordRagister).toBeVisible()
-        await this.passwordRagister.click()
-        await this.passwordRagister.fill(password)
-        await expect(this.signUpBtnRagister).toBeVisible()
-        await this.signUpBtnRagister.click()
-        await expect(this.page.locator(`${validateComponent}`)).toBeVisible()
-        await expect(this.page.locator(`${clickBtn}`)).toBeVisible()
-        await this.page.waitForTimeout(1000)
-        await this.page.locator(`${clickBtn}`).click()
+    async registerTeacher(name, email, username, password, validateComponent, clickBtn) {
+        if(this.isFirstCall) {
+            await expect(this.createBtnRagister).toBeVisible();
+            await this.createBtnRagister.click();
+            this.isFirstCall = false; // Set flag to false after the first call
+        }
+        await expect(this.headingRegister).toBeVisible();
+        await expect(this.nameRagister).toBeVisible();
+        await this.nameRagister.click();
+        await this.nameRagister.fill(name);
+        await expect(this.emailRagister).toBeVisible();
+        await this.emailRagister.click();
+        await this.emailRagister.fill(email);
+        await expect(this.usernameRagister).toBeVisible();
+        await this.usernameRagister.click();
+        await this.usernameRagister.fill(username);
+        await expect(this.passwordRagister).toBeVisible();
+        await this.passwordRagister.click();
+        await this.passwordRagister.fill(password);
+        await expect(this.signUpBtnRagister).toBeVisible();
+        await this.signUpBtnRagister.click();
+        await expect(this.page.locator(`${validateComponent}`)).toBeVisible();
+        await expect(this.page.locator(`${clickBtn}`)).toBeVisible();
+        await this.page.waitForTimeout(1000);
+        await this.page.locator(`${clickBtn}`).click();
+    }
+
+
+    async checkAdminExist(name, email, username, password, validateComponent, clickBtn) {
+        await expect(this.createBtnRagister).toBeVisible();
+        await this.createBtnRagister.click();
+        await expect(this.headingRegister).toBeVisible();
+        await expect(this.nameRagister).toBeVisible();
+        await this.nameRagister.click();
+        await this.nameRagister.fill(name);
+        await expect(this.emailRagister).toBeVisible();
+        await this.emailRagister.click();
+        await this.emailRagister.fill(email);
+        await expect(this.usernameRagister).toBeVisible();
+        await this.usernameRagister.click();
+        await this.usernameRagister.fill(username);
+        await expect(this.passwordRagister).toBeVisible();
+        await this.passwordRagister.click();
+        await this.passwordRagister.fill(password);
+        await expect(this.signUpBtnRagister).toBeVisible();
+        await this.signUpBtnRagister.click();
+        await expect(this.page.locator(`${validateComponent}`)).toBeVisible();
+        await expect(this.page.locator(`${clickBtn}`)).toBeVisible();
+        await this.page.waitForTimeout(1000);
+        await this.page.locator(`${clickBtn}`).click();
     }
 }
