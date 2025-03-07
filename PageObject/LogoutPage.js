@@ -1,11 +1,11 @@
-const {test,expect} = require('@playwright/test')
+const { test, expect } = require('@playwright/test')
 
-exports.LogoutPage = class LogoutPage{
+exports.LogoutPage = class LogoutPage {
     /**
      * @param {import ('@playwright/test').Page} page
      */
 
-    constructor(page){
+    constructor(page) {
         this.page = page
 
         //Elements
@@ -18,41 +18,70 @@ exports.LogoutPage = class LogoutPage{
         this.validateLogout = page.locator("//input[@class = 'btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn']")
     }
 
-
-
-    async logout(logoutPage){
+    async logout(logoutPage) {
         await this.page.getByRole('link', { name: `${logoutPage}` }).click();
-        await expect(this.page.getByRole('link', { name: `${logoutPage}` })).toBeVisible()
-        await expect(this.logoutNameBtn).toBeVisible();
+        await expect(
+            this.page.getByRole('link', { name: `${logoutPage}` })
+        ).toBeVisible()
+        await expect(
+            this.logoutNameBtn
+        ).toBeVisible();
         await this.logoutNameBtn.click();
-        await expect(this.logoutBtn).toBeVisible()
+        await expect(
+            this.logoutBtn
+        ).toBeVisible()
         await this.logoutBtn.click()
-        await expect(this.logoutText).toHaveText("Are you sure you want to logout?")
-        await expect(this.logoutConfirmBtn).toBeVisible()
-        await expect(this.logoutCancleBtn).toBeVisible()
+        await expect(
+            this.logoutText
+        ).toHaveText("Are you sure you want to logout?")
+        await expect(
+            this.logoutConfirmBtn
+        ).toBeVisible()
+        await expect(
+            this.logoutCancleBtn
+        ).toBeVisible()
         await this.logoutCancleBtn.click()
         await this.logoutNameBtn.click();
         await this.logoutBtn.click()
         await this.logoutConfirmBtn.click()
-        await expect(this.validateLogout).toBeVisible()
+        await expect(
+            this.validateLogout
+
+        ).toBeVisible()
     }
 
-    async logoutToggle(logoutPage, toggleLocator){
+    async logoutToggle(logoutPage, toggleLocator) {
         await this.page.getByRole('link', { name: `${logoutPage}` }).click();
-        await expect(this.page.getByRole('link', { name: `${logoutPage}` })).toBeVisible()
-        await expect(this.page.getByRole('link', { name: `${toggleLocator}`, exact : true })).toBeVisible()
-        await this.page.getByRole('link', { name: `${toggleLocator}`, exact : true }).click()
-        await expect(this.logoutNameBtn).toBeVisible();
+        await expect(
+            this.page.getByRole('link', { name: `${logoutPage}` })
+        ).toBeVisible()
+        await expect(
+            this.page.getByRole('link', { name: `${toggleLocator}`, exact: true })
+        ).toBeVisible()
+        await this.page.getByRole('link', { name: `${toggleLocator}`, exact: true }).click()
+        await expect(
+            this.logoutNameBtn
+        ).toBeVisible();
         await this.logoutNameBtn.click();
-        await expect(this.logoutBtn).toBeVisible()
+        await expect(
+            this.logoutBtn
+        ).toBeVisible()
         await this.logoutBtn.click()
-        await expect(this.logoutText).toHaveText("Are you sure you want to logout?")
-        await expect(this.logoutConfirmBtn).toBeVisible()
-        await expect(this.logoutCancleBtn).toBeVisible()
+        await expect(
+            this.logoutText
+        ).toHaveText("Are you sure you want to logout?")
+        await expect(
+            this.logoutConfirmBtn
+        ).toBeVisible()
+        await expect(
+            this.logoutCancleBtn
+        ).toBeVisible()
         await this.logoutCancleBtn.click()
         await this.logoutNameBtn.click();
         await this.logoutBtn.click()
         await this.logoutConfirmBtn.click()
-        await expect(this.validateLogout).toBeVisible()
+        await expect(
+            this.validateLogout
+        ).toBeVisible()
     }
 }

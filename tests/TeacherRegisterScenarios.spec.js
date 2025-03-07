@@ -60,9 +60,9 @@ test.describe('Register New Teacher', {
         );
 
         console.log("Deleting test user from database...");
-        let res = await axios.get("http://localhost:3000/TeacherNameData");
+        let res = await axios.get(`${process.env.API_DOMAIN}/TeacherNameData`);
 
-        await axios.delete("http://localhost:3000/delStaff", {
+        await axios.delete(`${process.env.API_DOMAIN}/delStaff`, {
             data: { id: res.data.data[0].sid }
         });
 

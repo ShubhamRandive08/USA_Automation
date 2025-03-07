@@ -35,31 +35,57 @@ exports.LoginPage = class LoginPage {
     }
 
     async validateComponents() {
-        await expect(this.popUp).toBeVisible()
-        await expect(this.heading).toBeVisible()
-        await expect(this.username).toBeVisible()
-        await expect(this.password).toBeVisible()
-        await expect(this.button).toBeVisible()
-        await expect(this.createBtn).toBeEnabled()
-        await expect(this.loginBtn).toBeEnabled()
+        await expect(
+            this.popUp
+        ).toBeVisible()
+        await expect(
+            this.heading
+        ).toBeVisible()
+        await expect(
+            this.username
+        ).toBeVisible()
+        await expect(
+            this.password
+        ).toBeVisible()
+        await expect(
+            this.button
+        ).toBeVisible()
+        await expect(
+            this.createBtn
+        ).toBeEnabled()
+        await expect(
+            this.loginBtn
+        ).toBeEnabled()
     }
 
     // Login
 
-    async teacherLogin(username, password, validateComponents) {
+    async teacherLogin(
+        username, 
+        password, 
+        validateComponents
+    ) {
         await this.username.click()
         await this.username.fill(username)
         await this.password.click()
         await this.password.fill(password)
         await this.button.click();
         await this.page.locator(`${validateComponents}`).waitFor();
-        await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
+        await expect(
+            this.page.locator(`${validateComponents}`)
+        ).toBeVisible()
         await this.page.locator(`//button[@class="swal2-confirm swal2-styled"]`).waitFor();
-        await expect(this.page.locator('//button[@class="swal2-confirm swal2-styled"]')).toBeVisible()
+        await expect(
+            this.page.locator('//button[@class="swal2-confirm swal2-styled"]')
+        ).toBeVisible()
         await this.page.locator('//button[@class="swal2-confirm swal2-styled"]').click()
     }
 
-    async teacherValidLogin(username, password, validateComponents) {
+    async teacherValidLogin(
+        username, 
+        password, 
+        validateComponents
+    ) {
         await this.username.click()
         await this.username.fill(username)
         await this.password.click()
@@ -69,8 +95,12 @@ exports.LoginPage = class LoginPage {
         // await expect(this.page.locator(`${validateComponents}`)).toBeVisible()
     }
 
-    async adminLogin(username, password, validateComponents) {
-        if(this.isFirstCall){
+    async adminLogin(
+        username, 
+        password, 
+        validateComponents
+    ) {
+        if (this.isFirstCall) {
             await this.loginBtn.click()
             this.isFirstCall = false
         }
@@ -79,13 +109,23 @@ exports.LoginPage = class LoginPage {
         await this.password.click()
         await this.password.fill(password)
         await this.button.click();
-        await expect(this.page.locator("//button[@class='swal2-confirm swal2-styled']")).toBeVisible();
+
+        await expect(
+            this.page.locator("//button[@class='swal2-confirm swal2-styled']")
+        ).toBeVisible();
         await this.adminLoginBtn.click()
         // await this.page.waitForTimeout(5000)
     }
 
-    async registerTeacher(name, email, username, password, validateComponent, clickBtn) {
-        if(this.isFirstCall) {
+    async registerTeacher(
+        name,
+        email,
+        username,
+        password,
+        validateComponent,
+        clickBtn
+    ) {
+        if (this.isFirstCall) {
             await expect(this.createBtnRagister).toBeVisible();
             await this.createBtnRagister.click();
             this.isFirstCall = false; // Set flag to false after the first call
@@ -112,7 +152,14 @@ exports.LoginPage = class LoginPage {
     }
 
 
-    async checkAdminExist(name, email, username, password, validateComponent, clickBtn) {
+    async checkAdminExist(
+        name,
+        email,
+        username,
+        password,
+        validateComponent,
+        clickBtn
+    ) {
         await expect(this.createBtnRagister).toBeVisible();
         await this.createBtnRagister.click();
         await expect(this.headingRegister).toBeVisible();

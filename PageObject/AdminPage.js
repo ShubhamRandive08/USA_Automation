@@ -20,9 +20,13 @@ exports.AdminPage = class AdminPage {
 
     async validateSearchBar() {
         await this.searchBar.waitFor();
-        await expect(this.searchBar).toBeVisible()
+        await expect(
+            this.searchBar
+        ).toBeVisible()
         await this.searchBar.click()
         await this.searchBar.fill("Manoj")
-        await expect(this.SearchBarOutput).toHaveText("Manoj");
+        await expect(
+            this.SearchBarOutput
+        ).toHaveText("Manoj");
     }
 }
