@@ -257,4 +257,6 @@ exports.TeacherPage = class TeacherPage {
         ).toBeVisible()
         await this.confirmBtn.click()
     }
+
+    // Validate Events Page
 }
