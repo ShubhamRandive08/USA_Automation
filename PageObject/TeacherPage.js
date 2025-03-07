@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 import exp from 'constants'
-
+import axios from 'axios'
+const enums = require('../enums')
 exports.TeacherPage = class TeacherPage {
     /**
      * @param {import ('@playwright/test').Page} page
@@ -11,7 +12,7 @@ exports.TeacherPage = class TeacherPage {
         this.page = page
 
         this.outerStudnetList = page.getByRole('link', { name: `󰄫 STUDENT LIST 󰅀` })
-        this.innerStudentList = page.getByRole('link', { name: `Student List`, exact : true })
+        this.innerStudentList = page.getByRole('link', { name: `Student List`, exact: true })
         this.confirmBtn = page.locator('//button[@class="swal2-confirm swal2-styled swal2-default-outline"]')
         this.rightMark = page.locator('//div[@class="swal2-success-ring"]')
         this.titleMark = page.locator('//h2[@class="swal2-title"]')
@@ -43,46 +44,107 @@ exports.TeacherPage = class TeacherPage {
     async validateItem() {
         // await this.page.sideBar.waitFor(); 
         await this.page.waitForTimeout(3000)
-        await expect(this.sideBar).toBeVisible();
-        await expect(this.searchBar).toBeVisible();
-        await expect(this.admissionTab).toBeVisible();
-        await expect(this.feeBar).toBeVisible();
-        await expect(this.tname).toBeVisible();
-        await expect(this.sideBarDashboard).toBeVisible();
-        await expect(this.sideBarStaff).toBeVisible();
-        await expect(this.sideBarStudentList).toBeVisible();
-        await expect(this.sideBarEvent).toBeVisible();
-        await expect(this.downloadIcon).toBeVisible();
-        await expect(this.newAddBtn).toBeVisible();
-        await expect(this.downloadBtn).toBeVisible();
+        await expect(
+            this.sideBar
+        ).toBeVisible();
+        await expect(
+            this.searchBar
+        ).toBeVisible();
+        await expect(
+            this.admissionTab
+        ).toBeVisible();
+        await expect(
+            this.feeBar
+        ).toBeVisible();
+        await expect(
+            this.tname
+        ).toBeVisible();
+        await expect(
+            this.sideBarDashboard
+        ).toBeVisible();
+        await expect(
+            this.sideBarStaff
+        ).toBeVisible();
+        await expect(
+            this.sideBarStudentList
+        ).toBeVisible();
+        await expect(
+            this.sideBarEvent
+        ).toBeVisible();
+        await expect(
+            this.downloadIcon
+        ).toBeVisible();
+        await expect(
+            this.newAddBtn
+        ).toBeVisible();
+        await expect(
+            this.downloadBtn
+        ).toBeVisible();
     }
 
     // Methods for dashboard page
     async validateDashboard(tname) {
-        await expect(this.tname).toHaveText(tname)
+        let res = await axios.get(
+            `${process.env.API_DOMAIN}/${enums.TEACHER_NAME}/${tname}`
+        )
+        let res2 = await axios.get(
+            `${process.env.API_DOMAIN}/studData`
+        )
+        let count = 0;
+        for (let i = 0; i < res2.data.studData.length; i++) {
+            if (res2.data.studData[i].tid == res.data.data[0].sid)
+                count++
+        }
+        await this.page.waitForTimeout(3500)
+        await expect(
+            this.tname
+        ).toHaveText(tname)
+        await expect(this.page.locator("#recent-purchases-listing > tbody > tr")).toHaveCount(count + 1)
         await this.downloadIcon.click()
-        await expect(this.page.locator("//div[@class='swal2-icon swal2-warning swal2-icon-show']")).toBeVisible()
-        await expect(this.cancleBtn).toBeVisible()
+        await expect(
+            this.page.locator("//div[@class='swal2-icon swal2-warning swal2-icon-show']")
+        ).toBeVisible()
+        await expect(
+            this.cancleBtn
+        ).toBeVisible()
         await this.cancleBtn.click()
         await this.downloadIcon.click()
-        await expect(this.confirmBtn).toBeVisible();
+        await expect(
+            this.confirmBtn
+        ).toBeVisible();
         await this.confirmBtn.click();
-        await expect(this.rightMark).toBeVisible()
-        await expect(this.titleMark).toHaveText('Downloaded!')
-        await expect(this.confirmBtn).toBeVisible()
+        await expect(
+            this.rightMark
+        ).toBeVisible()
+        await expect(
+            this.titleMark
+        ).toHaveText('Downloaded!')
+        await expect(
+            this.confirmBtn
+        ).toBeVisible()
         await this.confirmBtn.click()
         await this.newAddBtn.click()
     }
 
     async validateNewAddForDashboard() {
-        await expect(this.page.locator('//p[@class="card-description"]')).toBeVisible();
+        await expect(
+            this.page.locator('//p[@class="card-description"]')
+        ).toBeVisible();
         await this.sideBarDashboard.click();
         await this.downloadBtn.click();
-        await expect(this.confirmBtn).toBeVisible();
+        await expect(
+            this.confirmBtn
+        ).toBeVisible();
         await this.confirmBtn.click();
-        await expect(this.rightMark).toBeVisible()
-        await expect(this.titleMark).toHaveText('Downloaded!')
-        await expect(this.confirmBtn).toBeVisible()
+        await expect(
+            this.rightMark
+        ).toBeVisible()
+        await expect(
+            this.titleMark
+        ).toHaveText('Downloaded!')
+        await expect(
+            this.confirmBtn
+        ).toBeVisible()
         await this.confirmBtn.click()
     }
 
@@ -116,15 +178,26 @@ exports.TeacherPage = class TeacherPage {
             await this.page.locator('//input[@id="fee"]').type('10000');
             await this.page.locator('//input[@id="aadharno"]').click();
             await this.page.locator('//input[@id="aadharno"]').type('35242282309');
-            await expect(this.submitBtn).toBeVisible()
+            await expect(
+                this.submitBtn
+            ).toBeVisible()
             await this.submitBtn.click()
-            await expect(this.submitBtn).toBeVisible()
+            await expect(
+                this.submitBtn
+            ).toBeVisible()
         } else {
-            await expect(this.tname).toHaveText(tname)
+            await expect(
+                this.tname
+            ).toHaveText(tname)
             await this.sideBarNewAdmission.click();
-            await expect(this.page.getByRole('link', { name: `New Student` })).toBeVisible()
-            await this.page.getByRole('link', { name: 'New Student' }).click()
-            await expect(this.submitBtn).toBeVisible()
+            await expect(
+                this.page.getByRole('link', { name: `New Student` })
+            ).toBeVisible()
+            await this.page.getByRole('link', { name: 'New Student' }
+            ).click()
+            await expect(
+                this.submitBtn
+            ).toBeVisible()
             await this.submitBtn.click()
             // await expect(this.page.locator(`${validComponent}`)).toBeVisible()
 
@@ -134,30 +207,54 @@ exports.TeacherPage = class TeacherPage {
     // Validate Staff Page
     async validatStaffPage() {
         await this.sideBarStaff.click();
-        await expect(this.page.getByRole('link', { name: `Staff Member` })).toBeVisible()
+        await expect(
+            this.page.getByRole('link', { name: `Staff Member` })
+        ).toBeVisible()
         await this.page.getByRole('link', { name: 'Staff Member' }).click()
-        await expect(this.mainContent).toBeVisible()
-        await expect(this.adminText).toHaveText('ADMIN STAFF')
+        await expect(
+            this.mainContent
+        ).toBeVisible()
+        await expect(
+            this.adminText
+        ).toHaveText('ADMIN STAFF')
     }
 
     // Validate Student list page
     async validateStudentList() {
         await this.sideBarStudentList.click()
-        await expect(this.page.getByRole('link', { name: `󰄫 STUDENT LIST 󰅀` })).toBeVisible()
-        await this.page.getByRole('link', { name: `Student List`, exact : true }).click()
+        await expect(
+            this.page.getByRole('link', { name: `󰄫 STUDENT LIST 󰅀` })
+        ).toBeVisible()
+        await this.page.getByRole('link', { name: `Student List`, exact: true }).click()
         await this.downloadIcon.click()
-        await expect(this.confirmBtn).toBeVisible();
+        await expect(
+            this.confirmBtn
+        ).toBeVisible();
         await this.confirmBtn.click();
-        await expect(this.rightMark).toBeVisible()
-        await expect(this.titleMark).toHaveText('Downloaded!')
-        await expect(this.confirmBtn).toBeVisible()
+        await expect(
+            this.rightMark
+        ).toBeVisible()
+        await expect(
+            this.titleMark
+        ).toHaveText('Downloaded!')
+        await expect(
+            this.confirmBtn
+        ).toBeVisible()
         await this.confirmBtn.click()
         await this.downloadBtn.click();
-        await expect(this.confirmBtn).toBeVisible();
+        await expect(
+            this.confirmBtn
+        ).toBeVisible();
         await this.confirmBtn.click();
-        await expect(this.rightMark).toBeVisible()
-        await expect(this.titleMark).toHaveText('Downloaded!')
-        await expect(this.confirmBtn).toBeVisible()
+        await expect(
+            this.rightMark
+        ).toBeVisible()
+        await expect(
+            this.titleMark
+        ).toHaveText('Downloaded!')
+        await expect(
+            this.confirmBtn
+        ).toBeVisible()
         await this.confirmBtn.click()
     }
 }
