@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
-import exp from 'constants'
 import axios from 'axios'
+const StudentAdmissionData = require('../test-data/StudentAdmissionData.json')
 const enums = require('../enums')
 exports.TeacherPage = class TeacherPage {
     /**
@@ -151,35 +151,35 @@ exports.TeacherPage = class TeacherPage {
     }
 
     // Methods for the new admission page
-    async validateNewAdmissionPage(tname, validComponent) {
+    async validateNewAdmissionPage(tname, validComponent, teststudent) {
         if (validComponent == '') {
             await this.page.locator('//input[@id="fname"]').click();
-            await this.page.locator('//input[@id="fname"]').type('teststudent');
+            await this.page.locator('//input[@id="fname"]').type(StudentAdmissionData[teststudent].fname);
             await this.page.locator('//input[@id="mname"]').click();
-            await this.page.locator('//input[@id="mname"]').type('tester');
+            await this.page.locator('//input[@id="mname"]').type(StudentAdmissionData[teststudent].mname);
             await this.page.locator('//input[@id="lname"]').click();
-            await this.page.locator('//input[@id="lname"]').type('tests');
-            await this.page.locator('//select[@id="gender"]').selectOption('Male');
+            await this.page.locator('//input[@id="lname"]').type(StudentAdmissionData[teststudent].lname);
+            await this.page.locator('//select[@id="gender"]').selectOption(StudentAdmissionData[teststudent].gender);
             await this.page.locator('//input[@id="dob"]').click();
-            await this.page.locator('//input[@id="dob"]').type('01-01-2003');
+            await this.page.locator('//input[@id="dob"]').type(StudentAdmissionData[teststudent].dob);
             await this.page.locator('//input[@id="twelveth"]').click();
-            await this.page.locator('//input[@id="twelveth"]').type('88');
+            await this.page.locator('//input[@id="twelveth"]').type(StudentAdmissionData[teststudent].twelveth);
             await this.page.locator('//input[@id="tenth"]').click();
-            await this.page.locator('//input[@id="tenth"]').type('88');
+            await this.page.locator('//input[@id="tenth"]').type(StudentAdmissionData[teststudent].tenth);
             await this.page.locator('//input[@id="add"]').click();
-            await this.page.locator('//input[@id="add"]').type('test');
+            await this.page.locator('//input[@id="add"]').type(StudentAdmissionData[teststudent].add);
             await this.page.locator('//input[@id="state"]').click();
-            await this.page.locator('//input[@id="state"]').type('test');
+            await this.page.locator('//input[@id="state"]').type(StudentAdmissionData[teststudent].state);
             await this.page.locator('//input[@id="mb"]').click();
-            await this.page.locator('//input[@id="mb"]').type('8530871617');
+            await this.page.locator('//input[@id="mb"]').type(StudentAdmissionData[teststudent].mb);
             await this.page.locator('//input[@id="pcode"]').click();
-            await this.page.locator('//input[@id="pcode"]').type('416208');
+            await this.page.locator('//input[@id="pcode"]').type(StudentAdmissionData[teststudent].pcode);
             await this.page.locator('//input[@id="city"]').click();
-            await this.page.locator('//input[@id="city"]').type('test');
+            await this.page.locator('//input[@id="city"]').type(StudentAdmissionData[teststudent].city);
             await this.page.locator('//input[@id="fee"]').click();
-            await this.page.locator('//input[@id="fee"]').type('10000');
+            await this.page.locator('//input[@id="fee"]').type(StudentAdmissionData[teststudent].fee);
             await this.page.locator('//input[@id="aadharno"]').click();
-            await this.page.locator('//input[@id="aadharno"]').type('35242282309');
+            await this.page.locator('//input[@id="aadharno"]').type(StudentAdmissionData[teststudent].aadharno);
             await expect(
                 this.submitBtn
             ).toBeVisible()

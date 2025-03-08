@@ -11,7 +11,7 @@ exports.AdminPage = class AdminPage {
 
         //Elements
         this.searchBar = page.locator("//input[@type='text']")
-        this.SearchBarOutput = page.getByRole('cell', { name: 'Manoj' }).first()
+        this.SearchBarOutput = page.getByRole('cell', { name: 'teststudent1' }).first()
     }
 
     async goTo() {
