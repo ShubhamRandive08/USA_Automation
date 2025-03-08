@@ -24,9 +24,9 @@ exports.AdminPage = class AdminPage {
             this.searchBar
         ).toBeVisible()
         await this.searchBar.click()
-        await this.searchBar.fill("Manoj")
+        await this.searchBar.fill("teststudent1")
         await expect(
             this.SearchBarOutput
-        ).toHaveText("Manoj");
+        ).toHaveText("teststudent1");
     }
 }

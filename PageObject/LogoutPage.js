@@ -84,4 +84,32 @@ exports.LogoutPage = class LogoutPage {
             this.validateLogout
         ).toBeVisible()
     }
+
+    async onlyLogout(){
+        await expect(
+            this.logoutNameBtn
+        ).toBeVisible();
+        await this.logoutNameBtn.click();
+        await expect(
+            this.logoutBtn
+        ).toBeVisible()
+        await this.logoutBtn.click()
+        await expect(
+            this.logoutText
+        ).toHaveText("Are you sure you want to logout?")
+        await expect(
+            this.logoutConfirmBtn
+        ).toBeVisible()
+        await expect(
+            this.logoutCancleBtn
+        ).toBeVisible()
+        await this.logoutCancleBtn.click()
+        await this.logoutNameBtn.click();
+        await this.logoutBtn.click()
+        await this.logoutConfirmBtn.click()
+        await expect(
+            this.validateLogout
+
+        ).toBeVisible()
+    }
 }
