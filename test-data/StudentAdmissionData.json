@@ -1,0 +1,37 @@
+{
+    "teststudent1" : {
+        "fname" : "teststudent1",
+        "mname" : "teststudent1",
+        "lname" : "teststudent1",
+        "gender" : "Male",
+        "dob" : "01-01-2003",
+        "twelveth" : "88",
+        "tenth" : "77",
+        "add" : "test",
+        "state" : "test",
+        "mb" : "8530871617",
+        "pcode" : "416208",
+        "city" : "test",
+        "fee" : "test",
+        "aadharno" : "352422829096"
+    },
+
+    "teststudent2" : {
+        "fname" : "teststudent2",
+        "mname" : "teststudent2",
+        "lname" : "teststudent2",
+        "gender" : "Male",
+        "dob" : "01-01-2003",
+        "twelveth" : "88",
+        "tenth" : "77",
+        "add" : "test",
+        "state" : "test",
+        "mb" : "8530871617",
+        "pcode" : "416208",
+        "city" : "test",
+        "fee" : "test",
+        "aadharno" : "523689471425"
+    }
+
+
+}
