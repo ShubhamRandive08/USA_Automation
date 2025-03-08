@@ -84,17 +84,19 @@ exports.TeacherPage = class TeacherPage {
 
     // Methods for dashboard page
     async validateDashboard(tname) {
+        // API call for the count the row in table
         let res = await axios.get(
             `${process.env.API_DOMAIN}/${enums.TEACHER_NAME}/${tname}`
         )
         let res2 = await axios.get(
-            `${process.env.API_DOMAIN}/studData`
+            `${process.env.API_DOMAIN}/${enums.STUD_DATA}`
         )
         let count = 0;
         for (let i = 0; i < res2.data.studData.length; i++) {
             if (res2.data.studData[i].tid == res.data.data[0].sid)
                 count++
         }
+
         await this.page.waitForTimeout(3500)
         await expect(
             this.tname
@@ -199,8 +201,6 @@ exports.TeacherPage = class TeacherPage {
                 this.submitBtn
             ).toBeVisible()
             await this.submitBtn.click()
-            // await expect(this.page.locator(`${validComponent}`)).toBeVisible()
-
         }
     }
 
@@ -259,4 +259,16 @@ exports.TeacherPage = class TeacherPage {
     }
 
     // Validate Events Page
+    async validateEventPage(){
+        await this.sideBarEvent.click()
+        await expect(
+            this.page.locator(`//h1[@class="card-title"]`)
+        ).toBeVisible()
+        await expect(
+            this.page.locator(`//h1[@class="card-title"]`)
+        ).toHaveText('Your Events')
+        await expect(
+            this.page.locator(`thead > tr > th`).first()
+        ).toBeVisible();
+    }
 }
