@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test');
 const UserLoginData = require('./test-data/UserLoginData.json');
 const AdminLoginData = require('./test-data/AdminLoginData.json')
 const { LoginPage } = require('./PageObject/LoginPage');
+const {TeacherPage} = require('./PageObject/TeacherPage')
 
 let loginpage;
 
