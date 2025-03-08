@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
 import axios from 'axios'
-const helper = require('../helper')
-const UserCreationData = require('../test-data/UserCreationData.json')
-import { LoginPage } from '../PageObject/LoginPage'
+const helper = require('../../helper')
+const UserCreationData = require('../../test-data/UserCreationData.json')
+import { LoginPage } from '../../PageObject/LoginPage'
 
 let loginpage;
 
 test.describe('Register New Teacher', {
-    tag: ['@e2e']
+    tag : ['@functional']
 }, async () => {
 
     test.beforeEach(async ({ page }) => {
