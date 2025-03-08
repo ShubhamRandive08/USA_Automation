@@ -6,7 +6,9 @@ const { LogoutPage } = require('../PageObject/LogoutPage')
 let loginpage;
 let logoutpage;
 
-test.describe('Validate Logout Function', async () => {
+test.describe('Validate Logout Function',{
+    tag : ['@functional']
+}, async () => {
     test.beforeEach(async ({ page }) => {
         loginpage = new LoginPage(page)
         logoutpage = new LogoutPage(page)
