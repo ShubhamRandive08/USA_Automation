@@ -12,7 +12,7 @@
         "mb" : "8530871617",
         "pcode" : "416208",
         "city" : "test",
-        "fee" : "test",
+        "fee" : "10000",
         "aadharno" : "352422829096"
     },
 
@@ -21,15 +21,15 @@
         "mname" : "teststudent2",
         "lname" : "teststudent2",
         "gender" : "Male",
-        "dob" : "01-01-2003",
-        "twelveth" : "88",
+        "dob" : "11-09-2003",
+        "twelveth" : "56",
         "tenth" : "77",
         "add" : "test",
         "state" : "test",
-        "mb" : "8530871617",
+        "mb" : "9856892356",
         "pcode" : "416208",
         "city" : "test",
-        "fee" : "test",
+        "fee" : "10000",
         "aadharno" : "523689471425"
     }
 

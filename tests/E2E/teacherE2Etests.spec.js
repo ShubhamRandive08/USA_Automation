@@ -19,6 +19,11 @@ test.describe('Teacher Page E2E', () => {
             'USER_1',
             'USER_2'
         ]
+
+        const studnetData = [
+            'teststudent1',
+            'teststudent2'
+        ]
         let teacharpage = new TeacherPage(page)
         let logout = new LogoutPage(page)
 
@@ -28,35 +33,27 @@ test.describe('Teacher Page E2E', () => {
                 users[i], 
                 `//span[@class = 'nav-profile-name']`
             ) // ValidUser
-
             // methods for dashboard page
             await teacharpage.validateItem()
             await teacharpage.validateDashboard(
                 UserLoginData[users[i]].perfect_user.username.split('@')[0]
             )
             await teacharpage.validateNewAddForDashboard()
-
             // methods for new admission page 
             await teacharpage.validateNewAdmissionPage(
                 UserLoginData[users[i]].perfect_user.username.split('@')[0],
-                '//div[@class="swal2-container swal2-top swal2-backdrop-show"]'
+                '//div[@class="swal2-container swal2-top swal2-backdrop-show"]',
+                studnetData[i]
             )
             await teacharpage.validateNewAdmissionPage(
-                UserLoginData.USER_1.perfect_user.username.split('@')[0],
-                ''
+                UserLoginData[users[i]].perfect_user.username.split('@')[0],
+                '',
+                studnetData[i]
             )
-
             await teacharpage.validatStaffPage() // Methods for staff page
-
             await teacharpage.validateStudentList() // Methods for student list page
-
             await teacharpage.validateEventPage()  // Method for event page
-
             await logout.onlyLogout()
         }
-
-
-
-
     })
 })
