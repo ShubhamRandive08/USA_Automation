@@ -12,7 +12,9 @@ test.describe('Login Page Scenarios', () => {
         await helper.validate(page)
     })
 
-    test('Teacher Login scenarios', async ({ page }) => {
+    test('Teacher Login scenarios',{
+        tag : ['@functional']
+    }, async ({ page }) => {
         await helper.loginWithWrongUsername(page, 'USER_1', "//span[@class = 'swal2-x-mark']");
         await helper.loginWithWrongPassword(page, 'USER_1', "//span[@class = 'swal2-x-mark']");
         await helper.noUsernamePassword(page, 'USER_1', "//div[@class = 'swal2-icon swal2-warning swal2-icon-show']");

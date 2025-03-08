@@ -5,7 +5,9 @@ const { AdminPage } = require('../PageObject/AdminPage');
 
 let loginpage;
 let adminpage;
-test.describe('Admin Validation', async () => {
+test.describe('Admin Validation',{
+    tag : ['@functional']
+}, async () => {
     test('Validate Search Bar', async ({page}) => {
         loginpage = new LoginPage(page)
         adminpage = new AdminPage(page)
