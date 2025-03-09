@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test')
-const helper = require('../helper')
-const { LoginPage } = require('../PageObject/LoginPage')
-const { LogoutPage } = require('../PageObject/LogoutPage')
+const helper = require('../../helper')
+const { LoginPage } = require('../../PageObject/LoginPage')
+const { LogoutPage } = require('../../PageObject/LogoutPage')
 
 let loginpage;
 let logoutpage;
