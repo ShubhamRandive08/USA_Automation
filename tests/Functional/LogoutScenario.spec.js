@@ -51,7 +51,7 @@ test.describe('Validate Logout Function',{
             await helper.loginValidAdmin(page, "//div[@class = 'swal2-success-ring']");
 
             if (action.type === 'logout') {
-                await logoutpage.logout(action.menu);
+                await logoutpage.logout(action.menu);ok
             } else {
                 await logoutpage.logoutToggle(action.menu, action.subMenu);
             }
