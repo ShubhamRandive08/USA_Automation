@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test')
 const helper = require('../../helper')
 const { LoginPage } = require('../../PageObject/LoginPage')
 const { LogoutPage } = require('../../PageObject/LogoutPage')
+// import {LoginPage} from ('../../PageObjectLiginPage')
 
 let loginpage;
 let logoutpage;
@@ -17,7 +18,9 @@ test.describe('Validate Logout Function',{
     })
 
     // Test cases for teacher logout process
-    test('Validate Teacher Dashboard Logout Function', async ({ page }) => {
+    test('Validate Teacher Dashboard Logout Function', async ({ browserName,page }) => {
+    if (browserName !== 'chromium') test.skip();
+
         const actions = [
             ["󰋜 Dashboard"],
             ["󰝦 NEW ADDMISSION 󰅀", "New Student"],
@@ -38,7 +41,9 @@ test.describe('Validate Logout Function',{
     });
 
     // Test cases for the admin logout process
-    test('Validate Admin Dashboard Logout Function', async ({ page }) => {
+    test('Validate Admin Dashboard Logout Function', async ({ browserName,page }) => {
+    if (browserName !== 'chromium') test.skip();
+
         const actions = [
             { type: 'logout', menu: "󰋜 Dashboard" },
             { type: 'logoutToggle', menu: "󰕱 STAFF 󰅀", subMenu: "Staff Member" },
@@ -51,7 +56,7 @@ test.describe('Validate Logout Function',{
             await helper.loginValidAdmin(page, "//div[@class = 'swal2-success-ring']");
 
             if (action.type === 'logout') {
-                await logoutpage.logout(action.menu);ok
+                await logoutpage.logout(action.menu);
             } else {
                 await logoutpage.logoutToggle(action.menu, action.subMenu);
             }

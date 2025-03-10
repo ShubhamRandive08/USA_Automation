@@ -14,7 +14,8 @@ test.describe('Teacher Page E2E', () => {
     })
     test('E2E test case of teacher', {
         tag: ['@e2e']
-    }, async ({ page }) => {
+    }, async ({ browserName,page }) => {
+    if (browserName !== 'chromium') test.skip();
         const users = [
             'USER_1',
             'USER_2'

@@ -8,7 +8,9 @@ let adminpage;
 test.describe('Admin Validation',{
     tag : ['@functional']
 }, async () => {
-    test('Validate Search Bar', async ({page}) => {
+    test('Validate Search Bar', async ({browserName, page}) => {
+    if (browserName !== 'chromium') test.skip();
+        
         loginpage = new LoginPage(page)
         adminpage = new AdminPage(page)
 

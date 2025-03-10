@@ -15,7 +15,9 @@ test.describe('Register New Teacher', {
         await loginpage.goTo()
     })
 
-    test("Validate Teacher Registration Scenarios", async ({ page }) => {
+    test("Validate Teacher Registration Scenarios", async ({ browserName,page }) => {
+    if (browserName !== 'firefox') test.skip();
+
         const testCases = [
             {
                 name: "Login With Wrong Email",

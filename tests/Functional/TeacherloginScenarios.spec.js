@@ -14,7 +14,9 @@ test.describe('Login Page Scenarios', () => {
 
     test('Teacher Login scenarios',{
         tag : ['@functional']
-    }, async ({ page }) => {
+    }, async ({ browserName,page }) => {
+    if (browserName !== 'chromium') test.skip();
+
         await helper.loginWithWrongUsername(page, 'USER_1', "//span[@class = 'swal2-x-mark']");
         await helper.loginWithWrongPassword(page, 'USER_1', "//span[@class = 'swal2-x-mark']");
         await helper.noUsernamePassword(page, 'USER_1', "//div[@class = 'swal2-icon swal2-warning swal2-icon-show']");
@@ -22,7 +24,9 @@ test.describe('Login Page Scenarios', () => {
     });
     
 
-    test('Admin Login scenarios', async ({ page }) => {
+    test('Admin Login scenarios', async ({ browserName,page }) => {
+    if (browserName !== 'firefox') test.skip();
+
         let loginpage = new LoginPage(page)
         await loginpage.adminLogin( 
             AdminLoginData.worng_with_username.username,

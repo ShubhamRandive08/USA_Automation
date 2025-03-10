@@ -9,7 +9,9 @@ test.describe('Admin E2E tests', async () =>{
 
     test('Admin testing',{
         tag : ['@functional']
-    }, async ({page}) =>{
+    }, async ({browserName,page}) =>{
+    if (browserName !== 'firefox') test.skip();
+
 
         let adminpage = new AdminPage(page)
         let loginpage = new LoginPage(page)

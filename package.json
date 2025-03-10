@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test --headed"
+    "test": "npx playwright test --headed",
+    "testE2E" : "npx playwright test --headed --grep @functional"
+
   },
   "keywords": [],
   "author": "Shubham Balavant Randive",
