@@ -43,7 +43,7 @@ exports.TeacherPage = class TeacherPage {
 
     async validateItem() {
         // await this.page.sideBar.waitFor(); 
-        await this.page.waitForTimeout(3000)
+        await this.page.waitForTimeout(5000)
         await expect(
             this.sideBar
         ).toBeVisible();
