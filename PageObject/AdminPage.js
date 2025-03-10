@@ -50,8 +50,6 @@ exports.AdminPage = class AdminPage {
         ).toHaveText("teststudent1");
     }
 
-    // For function test case create this method named with validate the status of the teacher from admin page
-
     async validateTeacherStatus() {
         await this.page.waitForTimeout(2000)
         await expect(
@@ -165,8 +163,5 @@ exports.AdminPage = class AdminPage {
 
             await this.page.waitForTimeout(2000)
         }
-
     }
-
-
 }

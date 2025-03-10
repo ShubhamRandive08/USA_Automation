@@ -24,8 +24,5 @@ test.describe('Admin E2E tests', async () =>{
         )
 
         await adminpage.validateTeacherStatus()
-
-
-
     })
 })

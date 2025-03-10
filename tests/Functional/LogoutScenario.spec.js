@@ -56,7 +56,6 @@ test.describe('Validate Logout Function',{
                 await logoutpage.logoutToggle(action.menu, action.subMenu);
             }
         }
-
         await page.close()
     });
 })
