@@ -109,7 +109,6 @@ exports.LogoutPage = class LogoutPage {
         await this.logoutConfirmBtn.click()
         await expect(
             this.validateLogout
-
         ).toBeVisible()
     }
 }

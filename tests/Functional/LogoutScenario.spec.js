@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test')
-const helper = require('../helper')
-const { LoginPage } = require('../PageObject/LoginPage')
-const { LogoutPage } = require('../PageObject/LogoutPage')
+const helper = require('../../helper')
+const { LoginPage } = require('../../PageObject/LoginPage')
+const { LogoutPage } = require('../../PageObject/LogoutPage')
 
 let loginpage;
 let logoutpage;
@@ -51,7 +51,7 @@ test.describe('Validate Logout Function',{
             await helper.loginValidAdmin(page, "//div[@class = 'swal2-success-ring']");
 
             if (action.type === 'logout') {
-                await logoutpage.logout(action.menu);
+                await logoutpage.logout(action.menu);ok
             } else {
                 await logoutpage.logoutToggle(action.menu, action.subMenu);
             }
